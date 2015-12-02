@@ -24,3 +24,8 @@
     1. Android Wear ARM EABI v7a System Image
     2. Android Wear Intel x86 Atom System Image
 
+
+## Gradle
+
+1. 列出任务: `gradle tasks`
+2. 安装app: `gradle installDebug`
