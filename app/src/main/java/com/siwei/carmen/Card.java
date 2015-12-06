@@ -1,8 +1,7 @@
 package com.siwei.carmen;
 
-
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 /**
  * Created by wkd on 15-12-2.
@@ -42,12 +41,25 @@ public class Card implements Serializable{
         DueDay = dueDay;
     }
 
+    public int getMonthMaxDays () {
+        Calendar c = Calendar.getInstance();
+        return c.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
     public int getMaxIFP() {
         // IFP: interest-free period
-        throw new UnsupportedOperationException();
+        if (DueDay >= BillDay) {
+            return 30 + DueDay - BillDay - 1;
+        } else {
+            return 60 - (BillDay - DueDay) - 1;
+        }
     }
 
     public int getMinIFP() {
-        throw new UnsupportedOperationException();
+        if (DueDay >= BillDay) {
+            return DueDay - BillDay;
+        } else {
+            return 30 - (BillDay - DueDay);
+        }
     }
 }
