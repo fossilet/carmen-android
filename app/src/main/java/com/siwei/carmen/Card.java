@@ -2,6 +2,7 @@ package com.siwei.carmen;
 
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by wkd on 15-12-2.
@@ -39,5 +40,14 @@ public class Card implements Serializable{
 
     public void setDueDay(int dueDay) {
         DueDay = dueDay;
+    }
+
+    public int getMaxIFP() {
+        // IFP: interest-free period
+        throw new UnsupportedOperationException();
+    }
+
+    public int getMinIFP() {
+        throw new UnsupportedOperationException();
     }
 }
