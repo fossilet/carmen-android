@@ -29,10 +29,10 @@ public class CardAdapter extends ArrayAdapter<Card>{
         tvAlias.setText(card.getAlias());
 
         TextView tvBillDay = (TextView) view.findViewById(R.id.tvBillDay);
-        tvBillDay.setText("记账日：每月"+card.getBillDay()+"日");
+        tvBillDay.setText("账单日：每月"+card.getBillDay()+"日");
 
         TextView tvDueDay = (TextView) view.findViewById(R.id.tvDueDay);
-        tvDueDay.setText("还款日：每月"+card.getDueDay()+"日");
+        tvDueDay.setText("到期还款日：每月"+card.getDueDay()+"日");
 
         return view;
 

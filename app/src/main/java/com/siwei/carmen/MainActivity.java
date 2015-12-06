@@ -37,7 +37,7 @@ public class MainActivity extends FragmentActivity {
         titleList = new ArrayList<>();
         titleList.add("用卡建议");
         titleList.add("我的信用卡");
-        titleList.add("设置");
+        titleList.add("关于");
 
         fragementList = new ArrayList<>();
         fragementList.add(new SuggestionFragment());
