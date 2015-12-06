@@ -1,12 +1,11 @@
 # 卡门项目
 
-帮助用户最大化利用信用卡的免息期
+帮助用户最大化利用信用卡的免息期.
 
 # 配置环境
 
-## OS X
-
-1. `brew install gradle`
+1. 安装`gradle`
+    1. OS X: `brew install gradle`
 1. 安装[Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools)
 1. 在根目录新建`local.properties`文件,添加`sdk.dir=/path/to/android/sdk`
 1. 阅读Android SDK的README
@@ -25,7 +24,7 @@
     2. Android Wear Intel x86 Atom System Image
 
 
-## Gradle
+## Gradle使用
 
 1. 列出任务: `gradle tasks`
 2. 安装app: `gradle installDebug`
