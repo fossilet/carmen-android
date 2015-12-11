@@ -2,7 +2,6 @@ package com.siwei.carmen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,9 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,20 +20,21 @@ import java.util.List;
  */
 public class CardsFragment extends Fragment {
 
-    private List<Card> cardList;
     private Button btnNewCard;
+    private CardAdapter mAdapter;
+    private ListView lvCards;
+    View contentView;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.cards,container,false);
-        initCards();
-        CardAdapter adapter = new CardAdapter(view.getContext(),R.layout.card_item,cardList);
-        ListView lvCards = (ListView) view.findViewById(R.id.lvCards);
-        lvCards.setAdapter(adapter);
+        contentView  = inflater.inflate(R.layout.cards,container,false);
+        lvCards = (ListView) contentView.findViewById(R.id.lvCards);
 
-        btnNewCard = (Button) view.findViewById(R.id.btnNewCard);
+        refreshCardList();
+
+        btnNewCard = (Button) contentView.findViewById(R.id.btnNewCard);
         btnNewCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +42,7 @@ public class CardsFragment extends Fragment {
 
 
                 Intent intent = new Intent(getContext(),CardManageActivity.class);
-                intent.putExtra("newCard", (Serializable) newCard);
+                intent.putExtra("NEWCARD", (Serializable) newCard);
                 startActivityForResult(intent,1);
 
 
@@ -52,26 +50,30 @@ public class CardsFragment extends Fragment {
             }
         });
 
-
-
-        return view;
+        return contentView;
     }
 
-
-    private void initCards(){
-        //TODO: 将来从数据库中获取信用卡列表
-        cardList = new ArrayList<Card>();
-        cardList.add(new Card("工行行用卡",1,25));
-        cardList.add(new Card("建行信用卡",10,30));
-        cardList.add(new Card("兴业信用卡",5,28));
-        cardList.add(new Card("招行信用卡",3,22));
-        cardList.add(new Card("农行信用卡",4,27));
-
+    /**
+     * reload the cardlist and refresh listview.
+     */
+    private void refreshCardList(){
+        //从数据库中获取信用卡列表
+        CardDAO dao = new CardDAO(((MainActivity)this.getActivity()).getDbHelper());
+        List<Card> cardList = dao.FetchCardList(null);
+        mAdapter = new CardAdapter(contentView.getContext(),R.layout.card_item,cardList);
+        lvCards.setAdapter(mAdapter);
 
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(getContext(),"返回",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"返回",Toast.LENGTH_SHORT).show();
+        switch (requestCode){
+            case 1:  //CardManagerActivity go back to here.
+                if(resultCode == getActivity().RESULT_OK){
+                    refreshCardList();
+                }
+                break;
+        }
     }
 }

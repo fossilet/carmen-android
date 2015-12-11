@@ -37,7 +37,9 @@ public class CardManageActivity extends Activity {
         btnCancel= (Button)findViewById(R.id.btnCancel);
 
         Intent intent = getIntent();
-        Card editingCard = (Card)intent.getSerializableExtra("newCard");
+
+
+        final Card editingCard = (Card)intent.getSerializableExtra("NEWCARD");
         if(editingCard != null) {
             int billDay = editingCard.getBillDay();
             etAlias.setText(editingCard.getAlias());
@@ -48,9 +50,28 @@ public class CardManageActivity extends Activity {
         btnSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String newAlias = etAlias.getText().toString();
+                int newBillDay =Integer.parseInt(etBillDay.getText().toString());
+                int newDueDay = Integer.parseInt(etDueDay.getText().toString());
+
+                editingCard.setAlias(newAlias);
+                editingCard.setBillDay(newBillDay);
+                editingCard.setDueDay(newDueDay);
+
+
                 Intent intent = new Intent();
-                setResult(RESULT_OK,intent);
-                finish();
+                //save new card to database
+                CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
+                if(dao.InsertCard(editingCard)) {
+                    intent.putExtra("NEWCARD", editingCard);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+                else {
+                    //intent.putExtra("NEWCARD", "");
+                    setResult(RESULT_CANCELED, intent);
+                    finish();
+                }
             }
         });
 

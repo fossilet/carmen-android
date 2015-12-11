@@ -1,16 +1,9 @@
 package com.siwei.carmen;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +17,13 @@ public class MainActivity extends FragmentActivity {
     private List<Fragment> fragementList;
     private ViewPager mPager;
     private MyFragementPagerAdapter mAdapter;
+    private CarmenDatabaseHelper dbHelper;
+
+    private static MainActivity mInstance;
+
+    public static MainActivity getInstance() {
+        return mInstance;
+    }
 
 
     @Override
@@ -48,12 +48,17 @@ public class MainActivity extends FragmentActivity {
         mPager.setAdapter(mAdapter);
 
 
+        //create database.
+        dbHelper = new CarmenDatabaseHelper(this,this.getString(R.string.database_name),null,1);
+        getDbHelper().getWritableDatabase();
+
+        mInstance = this;
+
 
     }
 
 
-
-
-
-
+    public CarmenDatabaseHelper getDbHelper() {
+        return dbHelper;
+    }
 }
