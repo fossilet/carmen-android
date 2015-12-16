@@ -38,14 +38,16 @@
                 android:layout_width="50dp"
                 android:gravity="bottom|right"
                 android:layout_height="wrap_content"
-                android:text="记账日" />
+                android:text="记账日"
+                android:numeric="integer"/>
 
             <EditText
                 android:id="@+id/etBillDay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="@string/input_billday" />
+                android:hint="@string/input_billday"
+                android:numeric="integer"/>
         </LinearLayout>
 
         <LinearLayout

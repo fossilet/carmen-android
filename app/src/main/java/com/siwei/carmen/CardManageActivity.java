@@ -75,6 +75,16 @@ public class CardManageActivity extends Activity {
             }
         });
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                //intent.putExtra("NEWCARD", "");
+                setResult(RESULT_CANCELED, intent);
+                finish();
+            }
+        });
+
     }
 
 

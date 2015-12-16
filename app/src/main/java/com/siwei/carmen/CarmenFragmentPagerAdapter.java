@@ -9,31 +9,31 @@ import java.util.List;
 /**
  * Created by wkd on 15-11-30.
  */
-public class MyFragementPagerAdapter extends FragmentPagerAdapter {
+public class CarmenFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    MyFragementPagerAdapter(FragmentManager fm){
+    CarmenFragmentPagerAdapter(FragmentManager fm){
         super(fm);
     }
 
-    MyFragementPagerAdapter(FragmentManager fm,List<Fragment> fragementList,List<String> titleList){
+    CarmenFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragementList, List<String> titleList){
         super(fm);
-        this.fragements = fragementList;
+        this.fragments = fragementList;
         this.titles = titleList;
     }
 
-    private  List<Fragment> fragements;
+    private  List<Fragment> fragments;
     private List<String> titles;
 
 
 
     @Override
     public Fragment getItem(int position) {
-        return this.fragements.get(position);
+        return this.fragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return fragements.size();
+        return fragments.size();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class MainActivity extends FragmentActivity {
     private List<String> titleList;
     private List<Fragment> fragementList;
     private ViewPager mPager;
-    private MyFragementPagerAdapter mAdapter;
+    private CarmenFragmentPagerAdapter mAdapter;
     private CarmenDatabaseHelper dbHelper;
 
     private static MainActivity mInstance;
@@ -44,7 +44,7 @@ public class MainActivity extends FragmentActivity {
         fragementList.add(new CardsFragment());
         fragementList.add(new SettingFragment());
 
-        mAdapter = new MyFragementPagerAdapter(getSupportFragmentManager(),fragementList,titleList);
+        mAdapter = new CarmenFragmentPagerAdapter(getSupportFragmentManager(),fragementList,titleList);
         mPager.setAdapter(mAdapter);
 
 

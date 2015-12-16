@@ -3,6 +3,7 @@ package com.siwei.carmen;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +53,26 @@ public class CardDAO {
         values.put("billday",pCard.getBillDay());
         values.put("dueday",pCard.getDueDay());
 
-        long rowId = db.insert("card",null,values);
+        long rowId = db.insert("card", null, values);
         if(rowId>0)
             isOk = true;
+
+        return isOk;
+    }
+
+    /**
+     * delete card from database
+     * @param pCard
+     * @return if success, return true
+     */
+    boolean DeleteCard(Card pCard){
+        Boolean isOk =false;
+        if(pCard!=null) {
+            SQLiteDatabase db = mDbHelper.getWritableDatabase();
+            int ret = db.delete("card", "alias=?", new String[]{pCard.getAlias()});
+            if (ret > 0)
+                isOk = true;
+        }
 
         return isOk;
     }
