@@ -12,9 +12,9 @@ public class CardTest extends TestCase {
 
     public void setUp() throws Exception {
         super.setUp();
-        c1 = new Card("a", 12, 5);
-        c2 = new Card("a", 1, 9);
-        c3 = new Card("a", 1, 30);
+        c1 = new Card(-1,"a", 12, 5);
+        c2 = new Card(-1,"a", 1, 9);
+        c3 = new Card(-1,"a", 1, 30);
     }
 
     public void tearDown() throws Exception {
