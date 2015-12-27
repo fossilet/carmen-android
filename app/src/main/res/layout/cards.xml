@@ -4,6 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:background="#383636"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我拥有的信用卡"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            />
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dp"
+            android:src="@drawable/plus"/>
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/lvCards"
         android:layout_width="match_parent"
@@ -15,31 +42,5 @@
 
     </ListView>
 
-    <LinearLayout
-        android:id="@+id/llBottomTools"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnNewCard"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="增加"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="修改"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:text="删除"/>
-
-    </LinearLayout>
 
 </LinearLayout>

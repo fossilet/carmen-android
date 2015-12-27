@@ -11,7 +11,8 @@ import android.util.Log;
 public class CarmenDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_CARD = "create table card ("
-            + "alias text primary key, "
+            + "id integer primary key autoincrement, "
+            + "alias text , "
             + "billday integer, "
             + "dueday integer)";
     private Context mContext;

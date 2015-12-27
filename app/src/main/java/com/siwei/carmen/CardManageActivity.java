@@ -1,12 +1,14 @@
 package com.siwei.carmen;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -15,13 +17,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 /**
  * Created by wkd on 15-12-3.
  */
-public class CardManageActivity extends Activity {
+public class CardManageActivity extends Activity implements View.OnClickListener {
 
     private Button btnSure;
     private Button btnCancel;
     private EditText etAlias;
     private EditText etBillDay;
     private EditText etDueDay;
+    Boolean isNew = true;
+    Card tmpCard =null;
 
 
     @Override
@@ -39,41 +43,24 @@ public class CardManageActivity extends Activity {
         Intent intent = getIntent();
 
 
-        final Card editingCard = (Card)intent.getSerializableExtra("NEWCARD");
-        if(editingCard != null) {
-            int billDay = editingCard.getBillDay();
-            etAlias.setText(editingCard.getAlias());
-            etBillDay.setText(String.valueOf(editingCard.getBillDay()));
-            etDueDay.setText(String.valueOf(editingCard.getDueDay()));
+
+        if(intent.getSerializableExtra("NEWCARD")!=null) {
+            isNew = true;
+            tmpCard = (Card)intent.getSerializableExtra("NEWCARD");
+        }
+        if(intent.getSerializableExtra("EDITCARD")!=null){
+            isNew = false;
+            tmpCard = (Card)intent.getSerializableExtra("EDITCARD");
+        }
+        if(tmpCard != null) {
+            int billDay = tmpCard.getBillDay();
+            etAlias.setText(tmpCard.getAlias());
+            etBillDay.setText(String.valueOf(tmpCard.getBillDay()));
+            etDueDay.setText(String.valueOf(tmpCard.getDueDay()));
         }
 
-        btnSure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newAlias = etAlias.getText().toString();
-                int newBillDay =Integer.parseInt(etBillDay.getText().toString());
-                int newDueDay = Integer.parseInt(etDueDay.getText().toString());
+        btnSure.setOnClickListener(this);
 
-                editingCard.setAlias(newAlias);
-                editingCard.setBillDay(newBillDay);
-                editingCard.setDueDay(newDueDay);
-
-
-                Intent intent = new Intent();
-                //save new card to database
-                CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
-                if(dao.InsertCard(editingCard)) {
-                    intent.putExtra("NEWCARD", editingCard);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-                else {
-                    //intent.putExtra("NEWCARD", "");
-                    setResult(RESULT_CANCELED, intent);
-                    finish();
-                }
-            }
-        });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,4 +75,65 @@ public class CardManageActivity extends Activity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.btnSure) {
+            CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
+
+            String newAlias = etAlias.getText().toString();
+            if(isNew) {
+                if (dao.IsExist(newAlias)) {
+                    Toast.makeText(getApplicationContext(), "信用卡名字不能重复的！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            if(isNew ==false)
+            {
+                if(dao.IsExistExceptId(newAlias,tmpCard.getId()))
+                {
+                    Toast.makeText(getApplicationContext(), "信用卡名字不能重复的！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            int newBillDay = Integer.parseInt(etBillDay.getText().toString());
+            if (newBillDay < 1 || newBillDay > 31) {
+                Toast.makeText(getApplicationContext(), "计帐日需在月份范围内！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int newDueDay = Integer.parseInt(etDueDay.getText().toString());
+            if (newDueDay < 1 || newDueDay > 31) {
+                Toast.makeText(getApplicationContext(), "还款日需在月份范围内！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            tmpCard.setBillDay(newBillDay);
+            tmpCard.setDueDay(newDueDay);
+            tmpCard.setAlias(newAlias);
+
+            Intent intent = new Intent();
+            //save new card to database
+            if (isNew) {
+                if (dao.InsertCard(tmpCard)) {
+                    intent.putExtra("NEWCARD", tmpCard);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    //intent.putExtra("NEWCARD", "");
+                    setResult(RESULT_CANCELED, intent);
+                    finish();
+                }
+            } else {
+
+                if (dao.EditCard(tmpCard)) {
+                    intent.putExtra("EDITCARD", tmpCard);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    //intent.putExtra("NEWCARD", "");
+                    setResult(RESULT_CANCELED, intent);
+                    finish();
+                }
+            }
+        }
+    }
 }

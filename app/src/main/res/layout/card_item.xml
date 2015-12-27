@@ -26,12 +26,24 @@
         android:textSize="12sp"
         android:textColor="#FF0000"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnDeleteCard"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:text="删除"
+
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ivDelete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/trash"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
-        />
+        android:layout_centerVertical="true"
+        android:visibility="visible"/>
+    <ImageView
+        android:id="@+id/ivEdit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/pencil"
+        android:layout_toLeftOf="@id/ivDelete"
+        android:layout_centerVertical="true"
+        android:visibility="visible"/>
+
+
 </RelativeLayout>

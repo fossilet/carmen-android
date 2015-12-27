@@ -1,13 +1,15 @@
 package com.siwei.carmen;
 
+import android.app.Fragment;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,9 +22,9 @@ import java.util.List;
  */
 public class CardsFragment extends Fragment {
 
-    private Button btnNewCard;
     private CardAdapter mAdapter;
     private ListView lvCards;
+    private ImageView ivAdd;
     View contentView;
 
 
@@ -34,25 +36,27 @@ public class CardsFragment extends Fragment {
 
         refreshCardList();
 
-        btnNewCard = (Button) contentView.findViewById(R.id.btnNewCard);
-        btnNewCard.setOnClickListener(new View.OnClickListener() {
+        ivAdd = (ImageView) contentView.findViewById(R.id.ivAdd);
+        ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Card newCard = new Card("我的信用卡",1,25);
-
-
-                Intent intent = new Intent(getContext(),CardManageActivity.class);
+                Card newCard = new Card(-1,"我的信用卡",1,25);
+                Intent intent = new Intent(getActivity(),CardManageActivity.class);
                 intent.putExtra("NEWCARD", (Serializable) newCard);
                 startActivityForResult(intent,1);
-
-
-
             }
         });
+
+
 
         return contentView;
     }
 
+    public void startEditCard(Card pEditCard){
+        Intent intent = new Intent(getActivity(),CardManageActivity.class);
+        intent.putExtra("EDITCARD", (Serializable)pEditCard);
+        startActivityForResult(intent,1);
+    }
     /**
      * reload the cardlist and refresh listview.
      */
@@ -60,7 +64,7 @@ public class CardsFragment extends Fragment {
         //从数据库中获取信用卡列表
         CardDAO dao = new CardDAO(((MainActivity)this.getActivity()).getDbHelper());
         List<Card> cardList = dao.FetchCardList(null);
-        mAdapter = new CardAdapter(contentView.getContext(),R.layout.card_item,cardList);
+        mAdapter = new CardAdapter(this.getActivity(),R.layout.card_item,cardList);
         lvCards.setAdapter(mAdapter);
 
     }

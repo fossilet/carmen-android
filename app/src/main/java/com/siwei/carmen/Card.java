@@ -7,11 +7,16 @@ import java.util.Calendar;
  * Created by wkd on 15-12-2.
  */
 public class Card implements Serializable{
+    private int Id;
     private String Alias;
     private int BillDay;
     private int DueDay;
 
-    public Card(String pAlias,int pBillDay,int pDueDay){
+    public Card(){
+
+    }
+    public Card(int pId,String pAlias,int pBillDay,int pDueDay){
+        this.Id = pId;
         this.Alias = pAlias;
         this.BillDay = pBillDay;
         this.DueDay = pDueDay;
@@ -61,5 +66,13 @@ public class Card implements Serializable{
         } else {
             return 30 - (BillDay - DueDay);
         }
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }
