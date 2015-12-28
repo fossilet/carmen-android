@@ -33,5 +33,9 @@ public class CarmenDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        db.execSQL("DROP TABLE IF EXISTS carmen");
+        db.execSQL(CREATE_CARD);
+        Log.i("TMP","database upgrade");
+
     }
 }

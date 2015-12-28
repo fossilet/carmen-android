@@ -15,6 +15,9 @@ public class CarmenApplication extends Application{
         super.onCreate();
 
         context = getApplicationContext();
+
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
 
 
