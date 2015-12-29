@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="建议"
+                android:text="@string/recommendation"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
         <!--信用卡列表-->
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的信用卡"
+                android:text="@string/mycards"
                 android:textColor="#ffffff"/>
 
         </LinearLayout>
@@ -84,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="关于"
+                android:text="@string/about"
                 android:textColor="#ffffff"/>
         </LinearLayout>
 

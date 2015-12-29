@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="关于卡门"
+            android:text="@string/about_carmen"
             android:textColor="#ffffff"
             android:textSize="18sp"
             />
@@ -27,21 +27,21 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="一句话介绍"
+        android:text="@string/apropos"
         android:textSize="24sp"/>
 
     <TextView
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="帮助用户最大化利用信用卡的免息期。"/>
+        android:text="@string/about_long"/>
 
     <TextView
         android:layout_margin="20dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="联系我们"
+        android:text="@string/contact_us"
         android:textSize="24sp"/>
 
     <TextView
@@ -49,6 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="email"
-        android:text="卡门的完善需要您的支持：yongzhipan@gmail.com"/>
+        android:text="@string/email"/>
 
 </LinearLayout>

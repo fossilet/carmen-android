@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="信用卡使用建议"
+            android:text="@string/recommendation1"
             android:textColor="#ffffff"
             android:textSize="18sp"
             android:layout_gravity="center_vertical"
@@ -27,7 +27,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginTop="50dp"
         android:padding="25dp"
-        android:text="今日优先使用"
+        android:text="@string/today_tips"
         android:id="@+id/tvSuggestionTitle"
         android:textSize="24sp"
         android:gravity="center"/>

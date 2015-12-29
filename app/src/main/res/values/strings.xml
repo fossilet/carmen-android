@@ -4,4 +4,20 @@
     <string name="input_billday">请输入信用卡记账日</string>
     <string name="input_dueday">请输入信用卡还款日</string>
     <string name="database_name">card.db</string>
+    <string name="card_alias">别名</string>
+    <string name="bill_day">记账日</string>
+    <string name="due_day">还款日</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="recommendation">建议</string>
+    <string name="mycards">我的信用卡</string>
+    <string name="about">关于</string>
+    <string name="my_cards">我拥有的信用卡</string>
+    <string name="about_carmen">关于卡门</string>
+    <string name="apropos">一句话介绍</string>
+    <string name="about_long">帮助用户最大化利用信用卡的免息期。</string>
+    <string name="contact_us">联系我们</string>
+    <string name="email">卡门的完善需要您的支持：yongzhipan@gmail.com</string>
+    <string name="recommendation1">信用卡使用建议</string>
+    <string name="today_tips">今日优先使用</string>
 </resources>
