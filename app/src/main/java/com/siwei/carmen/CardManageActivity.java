@@ -97,12 +97,12 @@ public class CardManageActivity extends Activity implements View.OnClickListener
             }
             int newBillDay = Integer.parseInt(etBillDay.getText().toString());
             if (newBillDay < 1 || newBillDay > 31) {
-                Toast.makeText(getApplicationContext(), "计帐日需在月份范围内！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "帐单日需在月份范围内！", Toast.LENGTH_SHORT).show();
                 return;
             }
             int newDueDay = Integer.parseInt(etDueDay.getText().toString());
             if (newDueDay < 1 || newDueDay > 31) {
-                Toast.makeText(getApplicationContext(), "还款日需在月份范围内！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "到期还款日需在月份范围内！", Toast.LENGTH_SHORT).show();
                 return;
             }
 
