@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import org.joda.time.LocalDate;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class SuggestionFragment extends Fragment {
         int maxIFP = 0;
         if(cards!=null) {
             for (Card item : cards) {
-                int tmpIFP = item.getMaxIFP();
+                int tmpIFP = item.getIFP(new LocalDate());
                 if (tmpIFP > maxIFP) {
                     maxIFP = tmpIFP;
                     usedCard = item;

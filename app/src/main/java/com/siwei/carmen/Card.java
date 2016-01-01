@@ -1,7 +1,8 @@
 package com.siwei.carmen;
 
+import org.joda.time.LocalDate;
+
 import java.io.Serializable;
-import java.util.Calendar;
 
 /**
  * Created by wkd on 15-12-2.
@@ -46,9 +47,31 @@ public class Card implements Serializable{
         DueDay = dueDay;
     }
 
-    public int getMonthMaxDays () {
-        Calendar c = Calendar.getInstance();
-        return c.getActualMaximum(Calendar.DAY_OF_MONTH);
+    public static int daysOfMonth(int year, int month) {
+        LocalDate date = new LocalDate(year, month, 1);
+        return date.dayOfMonth().getMaximumValue();
+    }
+
+    public int getIFP(LocalDate date) {
+        int day = date.getDayOfMonth();
+        if (BillDay <= DueDay) {
+            if (day <= BillDay) {
+                //     <-current month->
+                return getDueDay() - day;
+            } else {
+                //     <-------------current month------------->   <next month>
+                return date.dayOfMonth().getMaximumValue() - day + getDueDay();
+            }
+        } else {
+            if (day <= BillDay) {
+                //     <-------------current month------------->   <next month>
+                return date.dayOfMonth().getMaximumValue() - day + getDueDay();
+            } else {
+                //     <-------------current month------------->  <------------------next month-------------------->   <third month>
+                return date.dayOfMonth().getMaximumValue() - day + date.plusMonths(1).dayOfMonth().getMaximumValue() + getDueDay();
+            }
+
+        }
     }
 
     public int getMaxIFP() {

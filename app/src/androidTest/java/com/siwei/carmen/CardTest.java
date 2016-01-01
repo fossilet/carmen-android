@@ -21,8 +21,10 @@ public class CardTest extends TestCase {
 
     }
 
-    public void testGetMonthMaxDays() throws Exception {
-
+    public void testDaysOfMonth() throws Exception {
+        assertEquals(Card.daysOfMonth(2015, 2), 28);
+        assertEquals(Card.daysOfMonth(2016, 2), 29);
+        assertEquals(Card.daysOfMonth(2016, 3), 31);
     }
 
     public void testGetMaxIFP() throws Exception {
