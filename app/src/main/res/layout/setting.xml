@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:weightSum="1">
 
 
     <RelativeLayout
@@ -28,27 +28,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/apropos"
-        android:textSize="24sp"/>
+        android:textSize="24sp" android:id="@+id/"/>
 
     <TextView
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/about_long"/>
+        android:text="@string/about_long" android:id="@+id/" android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_us"
-        android:textSize="24sp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30%dp" android:layout_weight="0.60">
+    </LinearLayout>
 
     <TextView
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="email"
-        android:text="@string/email"/>
+        android:text="@string/email" android:id="@+id/" android:layout_gravity="center_horizontal"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:id="@+id/textView2" android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+    </LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/copyright"
+            android:id="@+id/textView" android:layout_gravity="center_horizontal" android:layout_marginTop="20dp"/>
 
 </LinearLayout>

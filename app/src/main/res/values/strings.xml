@@ -14,10 +14,12 @@
     <string name="about">关于</string>
     <string name="my_cards">我拥有的信用卡</string>
     <string name="about_carmen">关于卡门</string>
-    <string name="apropos">一句话介绍</string>
-    <string name="about_long">帮助用户最大化利用信用卡的免息期。</string>
+    <string name="apropos">值得信赖的信用卡助手</string>
+    <string name="about_long">卡门帮您更好地使用信用卡</string>
     <string name="contact_us">联系我们</string>
-    <string name="email">卡门的完善需要您的支持：yongzhipan@gmail.com</string>
+    <string name="email">意见反馈：panyongzhi@gmail.com</string>
     <string name="recommendation1">信用卡使用建议</string>
     <string name="today_tips">今日优先使用</string>
+    <string name="copyright">版权所有 © 2016 永动工作室</string>
+    <string name="version">版本信息: v1.0 (d41d8)</string>
 </resources>
