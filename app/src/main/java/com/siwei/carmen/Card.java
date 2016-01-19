@@ -91,6 +91,7 @@ public class Card implements Serializable{
         }
     }
 
+
     public int getId() {
         return Id;
     }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by wkd on 15-11-28.
@@ -59,6 +60,11 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         llAbout.setOnClickListener(this);
         llAbout.setOnTouchListener(this);
 
+        TextView tvZan = (TextView) findViewById(R.id.textView3);
+        int unicode = 0x1F60A;
+
+        Utils u = new Utils();
+        tvZan.setText(u.getEmijoByUnicode(unicode));
 
         //create database.
         dbHelper = new CarmenDatabaseHelper(this,this.getString(R.string.database_name),null,1);
