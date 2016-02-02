@@ -3,6 +3,7 @@ package com.siwei.carmen;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class CardAdapter extends ArrayAdapter<Card>{
                 }
             });*/
 
-            ImageView ivEdit = (ImageView)convertView.findViewById(R.id.ivEdit);
+  /*          ImageView ivEdit = (ImageView)convertView.findViewById(R.id.ivEdit);
             ivEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -115,7 +116,7 @@ public class CardAdapter extends ArrayAdapter<Card>{
                             .show();
 
                 }
-            });
+            });*/
         }
 
 
