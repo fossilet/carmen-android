@@ -4,9 +4,9 @@
     <string name="input_billday">请输入信用卡账单日</string>
     <string name="input_dueday">请输入信用卡到期还款日</string>
     <string name="database_name">card.db</string>
-    <string name="card_alias">别名</string>
+    <string name="card_alias">别  名</string>
     <string name="bill_day">账单日</string>
-    <string name="due_day">到期还款日</string>
+    <string name="due_day">还款日</string>
     <string name="cancel">取消</string>
     <string name="ok">确定</string>
     <string name="recommendation">建议</string>

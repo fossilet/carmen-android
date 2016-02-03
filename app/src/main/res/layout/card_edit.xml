@@ -13,11 +13,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:layout_width="50dp"
-                android:gravity="bottom|end"
+                android:layout_width="wrap_content"
+                android:gravity="center|right"
                 android:layout_height="wrap_content"
                 android:text="@string/card_alias" />
 
@@ -25,19 +26,20 @@
                 android:id="@+id/etAlias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:hint="@string/input_alias"
+                android:layout_marginLeft="18dp"
                 android:singleLine="true"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:layout_width="50dp"
-                android:gravity="bottom|end"
+                android:layout_width="wrap_content"
+                android:gravity="center|right"
                 android:layout_height="wrap_content"
                 android:text="@string/bill_day" />
 
@@ -45,28 +47,30 @@
                 android:id="@+id/etBillDay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:hint="@string/input_billday"
+                android:layout_marginLeft="10dp"
                 android:numeric="integer"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
-                android:gravity="bottom|end"
-                android:layout_width="50dp"
+                android:gravity="center|right"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/due_day" />
 
             <EditText
                 android:id="@+id/etDueDay"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
                 android:hint="@string/input_dueday"
+                android:layout_marginLeft="10dp"
                 android:numeric="integer"/>
         </LinearLayout>
 
@@ -97,8 +101,5 @@
             android:layout_margin="5dp"
             android:text="@string/ok"
             android:background="#eeeeee" />
-
     </LinearLayout>
-
-
 </LinearLayout>

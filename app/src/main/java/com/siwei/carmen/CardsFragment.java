@@ -99,8 +99,9 @@ public class CardsFragment extends Fragment {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, 0, 0, "删除").setIcon(R.drawable.trash);
-        menu.add(0, 1, 1, "编辑").setIcon(R.drawable.pencil);
+        menu.add(0, 0, 0, "编辑").setIcon(R.drawable.pencil);
+        menu.add(0, 1, 1, "删除").setIcon(R.drawable.trash);
+
     }
 
     @Override
@@ -111,10 +112,10 @@ public class CardsFragment extends Fragment {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
             Log.d("TEST", info.position + "--");
             final Card c =(Card) lvCards.getAdapter().getItem(info.position);
-            if(item.getItemId() == 1){
+            if(item.getItemId() == 0){
                 this.startEditCard(c);
             }
-            if(item.getItemId()==0){
+            if(item.getItemId()== 1){
                 new AlertDialog.Builder(this.getActivity())
                         .setTitle("确认")
                         .setMessage("确定删除"+c.getAlias()+"吗？")
