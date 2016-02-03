@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by wkd on 15-11-28.
@@ -36,41 +37,46 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        try {
+            super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.main);
-        fm = getFragmentManager();
-        fragmentSuggestion = new SuggestionFragment();
-        fragmentCards = new CardsFragment();
-        fragmentAbout = new SettingFragment();
+            this.setContentView(R.layout.main);
+            fm = getFragmentManager();
+            fragmentSuggestion = new SuggestionFragment();
+            fragmentCards = new CardsFragment();
+            fragmentAbout = new SettingFragment();
 
 
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.llContent, fragmentSuggestion);
-        //ft.addToBackStack(null);
-        ft.commit();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.llContent, fragmentSuggestion);
+            //ft.addToBackStack(null);
+            ft.commit();
 
-        llSuggestion = (LinearLayout) findViewById(R.id.llSuggestion);
-        llSuggestion.setOnClickListener(this);
-        llSuggestion.setOnTouchListener(this);
-        llCards = (LinearLayout) findViewById(R.id.llCards);
-        llCards.setOnClickListener(this);
-        llCards.setOnTouchListener(this);
-        llAbout = (LinearLayout) findViewById(R.id.llAbout);
-        llAbout.setOnClickListener(this);
-        llAbout.setOnTouchListener(this);
+            llSuggestion = (LinearLayout) findViewById(R.id.llSuggestion);
+            llSuggestion.setOnClickListener(this);
+            llSuggestion.setOnTouchListener(this);
+            llCards = (LinearLayout) findViewById(R.id.llCards);
+            llCards.setOnClickListener(this);
+            llCards.setOnTouchListener(this);
+            llAbout = (LinearLayout) findViewById(R.id.llAbout);
+            llAbout.setOnClickListener(this);
+            llAbout.setOnTouchListener(this);
 
-        TextView tvZan = (TextView) findViewById(R.id.textView3);
-        int unicode = 0x1F60A;
+            TextView tvZan = (TextView) findViewById(R.id.textView3);
+            int unicode = 0x1F60A;
 
-        Utils u = new Utils();
-        tvZan.setText(u.getEmijoByUnicode(unicode));
+            Utils u = new Utils();
+            tvZan.setText(u.getEmijoByUnicode(unicode));
 
-        //create database.
-        dbHelper = new CarmenDatabaseHelper(this,this.getString(R.string.database_name),null,1);
-        getDbHelper().getWritableDatabase();
+            //create database.
+            dbHelper = new CarmenDatabaseHelper(this, this.getString(R.string.database_name), null, 1);
+            getDbHelper().getWritableDatabase();
 
-        mInstance = this;
+            mInstance = this;
+        }
+        catch (Exception ex){
+            Toast.makeText(this,"显示主界面出错->"+ex.getMessage(),Toast.LENGTH_SHORT).show();
+        }
 
     }
 
