@@ -81,9 +81,18 @@ public class CardManageActivity extends Activity implements View.OnClickListener
             CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
 
             String newAlias = etAlias.getText().toString();
+            String tmpAlias = newAlias.replaceAll("\\s","");
+            if(tmpAlias.isEmpty()){
+                Toast.makeText(getApplicationContext(), "请输入信用卡别名，别名不能为空白字符！", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+            if(newAlias.length()>20){
+                Toast.makeText(getApplicationContext(), "信用卡别名长度不能超过20！", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if(isNew) {
                 if (dao.IsExist(newAlias)) {
-                    Toast.makeText(getApplicationContext(), "信用卡名字不能重复的！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "信用卡别名不能重复的！", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -91,7 +100,7 @@ public class CardManageActivity extends Activity implements View.OnClickListener
             {
                 if(dao.IsExistExceptId(newAlias,tmpCard.getId()))
                 {
-                    Toast.makeText(getApplicationContext(), "信用卡名字不能重复的！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "信用卡别名不能重复的！", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
