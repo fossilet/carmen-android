@@ -44,6 +44,7 @@ public class SuggestionFragment extends Fragment {
         CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
         List<Card> cards = dao.FetchCardList(null);
 
+
         Card usedCard = null;
         int maxIFP = 0;
         if(cards!=null) {

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by wkd on 15-12-2.
  */
-public class Card implements Serializable{
+public class Card implements Serializable,Comparable<Card>{
     private int Id;
     private String Alias;
     private int BillDay;
@@ -98,5 +98,25 @@ public class Card implements Serializable{
 
     public void setId(int id) {
         Id = id;
+    }
+
+
+    @Override
+    public int compareTo(Card another) {
+        int ret = 0;
+        try{
+            int thisIFP = this.getIFP(new LocalDate());
+            int thatIFP = another.getIFP(new LocalDate());
+            if(thisIFP > thatIFP )
+                ret=-1;
+            else if(thisIFP < thatIFP)
+                ret =1;
+            else
+                ret = 0;
+        }
+        catch(Exception ex){
+            ret = this.getAlias().compareTo(another.getAlias());
+        }
+        return ret;
     }
 }

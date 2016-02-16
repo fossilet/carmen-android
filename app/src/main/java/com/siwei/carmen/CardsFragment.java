@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -78,6 +80,7 @@ public class CardsFragment extends Fragment {
         //从数据库中获取信用卡列表
         CardDAO dao = new CardDAO(((MainActivity)this.getActivity()).getDbHelper());
         List<Card> cardList = dao.FetchCardList(null);
+        Collections.sort(cardList);
         mAdapter = new CardAdapter(this.getActivity(),R.layout.card_item,cardList);
         lvCards.setAdapter(mAdapter);
 
@@ -98,16 +101,16 @@ public class CardsFragment extends Fragment {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, 0, 0, "编辑").setIcon(R.drawable.pencil);
-        menu.add(0, 1, 1, "删除").setIcon(R.drawable.trash);
 
+        MenuItem menu0 =  menu.add(0, 0, 0, "编辑");
+        menu0.setIcon(R.drawable.trash);
+        MenuItem menu1 =menu.add(0, 1, 1, "删除");
+        menu1.setIcon(R.drawable.pencil);
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        Log.d("TEST", item.getTitle().toString());
-        Log.d("TEST",item.getItemId()+"");
         if(item.getMenuInfo() instanceof AdapterView.AdapterContextMenuInfo) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
             Log.d("TEST", info.position + "--");

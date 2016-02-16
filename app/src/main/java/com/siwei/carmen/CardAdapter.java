@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.joda.time.LocalDate;
+
 import java.util.List;
 
 /**
@@ -34,95 +36,43 @@ public class CardAdapter extends ArrayAdapter<Card>{
 
     }
 
+    public  class ViewHolder{
+        TextView tvAlias;
+        TextView tvBillDay;
+        TextView tvDueDay;
+        TextView tvIFP;
+
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+
         if(convertView == null){
-            Card card = getItem(position);
             convertView = LayoutInflater.from(getContext()).inflate(resourceId, null);
+            holder = new ViewHolder();
+            holder.tvAlias = (TextView) convertView.findViewById(R.id.tvAlias);
+            holder.tvBillDay = (TextView) convertView.findViewById(R.id.tvBillDay);
+            holder.tvDueDay = (TextView) convertView.findViewById(R.id.tvDueDay);
+            holder.tvIFP = (TextView)convertView.findViewById(R.id.tvIFP);
 
-            TextView tvAlias = (TextView) convertView.findViewById(R.id.tvAlias);
-            tvAlias.setText(card.getAlias());
-
-            TextView tvBillDay = (TextView) convertView.findViewById(R.id.tvBillDay);
-            tvBillDay.setText("账单日：每月"+card.getBillDay()+"日");
-
-            TextView tvDueDay = (TextView) convertView.findViewById(R.id.tvDueDay);
-            tvDueDay.setText("到期还款日：每月" + card.getDueDay() + "日");
-
-
-
-            /*convertView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    ImageView iv = (ImageView) v.findViewById(R.id.ivDelete);
-                    switch (event.getAction()){
-                        case MotionEvent.ACTION_DOWN:
-                            downX = event.getX();
-                            Log.i("iv","DOWN");
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            Log.i("iv","UP");
-                            upX = event.getX();
-                            if(upX-downX>35)
-                            {
-                                iv.setVisibility(View.GONE);
-
-                            }
-                            if(downX-upX > 35){
-                                iv.setVisibility(View.VISIBLE);
-                            }
-
-                            downX = upX =0;
-                            break;
-
-                    }
-
-                    return true;
-                }
-            });*/
-
-  /*          ImageView ivEdit = (ImageView)convertView.findViewById(R.id.ivEdit);
-            ivEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Card tmpCard = getItem(position);
-                    CardsFragment cf =(CardsFragment) MainActivity.getInstance().getFragmentCards();
-                    cf.startEditCard(tmpCard);
-
-                }
-            });
-
-            ImageView ivDelete = (ImageView) convertView.findViewById(R.id.ivDelete);
-            ivDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ImageView iv = (ImageView) v;
-                    final Card card = getItem(position);
-                    new AlertDialog.Builder(hostContext)
-                            .setTitle("确认")
-                            .setMessage("确定删除"+card.getAlias()+"吗？")
-                            .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    CardDAO dao = new CardDAO(MainActivity.getInstance().getDbHelper());
-                                    if (dao.DeleteCard(card)) {
-                                        cardList.remove(position);
-                                        notifyDataSetChanged();
-
-                                    }
-                                }
-                            })
-                            .setNegativeButton("否",null)
-                            .show();
-
-                }
-            });*/
+            convertView.setTag(holder);
         }
-
-
-
+        else
+        {
+            holder = (ViewHolder)convertView.getTag();
+        }
+        Card card = getItem(position);
+        holder.tvAlias.setText(card.getAlias());
+        holder.tvBillDay.setText("账单日：每月"+card.getBillDay()+"日");
+        holder.tvDueDay.setText("到期还款日：每月" + card.getDueDay() + "日");
+        int tmpIFP = card.getIFP(new LocalDate());
+        holder.tvIFP.setText("免息期："+tmpIFP+"天");
 
         return convertView;
 
     }
 }
+
+
+
