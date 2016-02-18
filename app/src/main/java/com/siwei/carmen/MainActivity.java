@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 /**
  * Created by wkd on 15-11-28.
  */
@@ -61,6 +64,11 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             llAbout = (LinearLayout) findViewById(R.id.llAbout);
             llAbout.setOnClickListener(this);
             llAbout.setOnTouchListener(this);
+
+            AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+
 
             TextView tvZan = (TextView) findViewById(R.id.textView3);
             int unicode = 0x1F60A;
