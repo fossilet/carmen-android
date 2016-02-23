@@ -19,10 +19,13 @@
     1. Google Play Services
     1. Google Repository
 1. `./gradlew`
+
+## 常见错误
+
 1. 如果AVD出现[分辨率的错误](http://stackoverflow.com/q/33253381/547578),可以把如下模块从Android SDK移除:
     1. Android Wear ARM EABI v7a System Image
     2. Android Wear Intel x86 Atom System Image
-
+1. Android模拟器不能启动，出现"emulator: Failed to sync vcpu reg emulator: Failed to sync HAX vcpu context"的错误。解决办法：把[VirtualBox](https://www.virtualbox.org/ticket/14294)虚拟机都停掉。
 
 ## Gradle使用
 
