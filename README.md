@@ -20,6 +20,11 @@
     1. Google Repository
 1. `./gradlew`
 
+
+## 重建项目
+
+如果项目改名了,在Intellij里面选择Import,不要选择Open,就可重新配置好项目.
+
 ## 常见错误
 
 1. 如果AVD出现[分辨率的错误](http://stackoverflow.com/q/33253381/547578),可以把如下模块从Android SDK移除:
