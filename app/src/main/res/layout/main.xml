@@ -19,7 +19,7 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
@@ -64,18 +64,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginBottom="5px"
+            android:layout_marginTop="5px"
             android:orientation="vertical"
             android:gravity="center_vertical|center_horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/visa"/>
+                android:layout_weight="0.80"
+                android:layout_marginBottom="5px"
+                android:src="@drawable/creditcards"
+                android:layout_gravity="center_horizontal" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.10"
                 android:text="@string/mycards"
                 android:textColor="#ffffff"/>
 
@@ -86,18 +92,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginBottom="5px"
+            android:layout_marginTop="5px"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:layout_marginBottom="5px"
                 android:src="@drawable/email"/>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.10"
                 android:text="@string/about"
                 android:textColor="#ffffff"/>
         </LinearLayout>
